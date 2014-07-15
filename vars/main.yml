@@ -1,2 +1,7 @@
 ---
 # vars file for hproxy
+
+haproxy_version: "{{haproxy_major_version}}.{{haproxy_minor_version}}.{{haproxy_micro_version}}"
+
+haproxy_package: 'haproxy-{{haproxy_version}}.tar.gz'
+haproxy_download_url: "http://www.haproxy.org/download/{{haproxy_major_version}}.{{haproxy_minor_version}}/src/{{haproxy_package}}"
