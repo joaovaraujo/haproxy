@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  author: João Coelho
+  author: Joao Coelho
   description: 
   # Some suggested licenses:
   # - BSD (default)
@@ -88,7 +88,7 @@ galaxy_info:
   - name: GenericLinux
     versions:
     - all
-  #  - any
+    - any
   #- name: Debian
   #  versions:
   #  - all
