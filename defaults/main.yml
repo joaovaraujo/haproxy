@@ -1,2 +1,10 @@
 ---
 # defaults file for hproxy
+
+haproxy_action: install
+
+haproxy_major_version: '1'
+haproxy_minor_version: '5'
+haproxy_micro_version: '2'
+
+haproxy_download_dir: '~/Downloads'

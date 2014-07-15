@@ -1,5 +1,5 @@
 ---
-# vars file for hproxy
+# vars file for haproxy
 
 haproxy_version: "{{haproxy_major_version}}.{{haproxy_minor_version}}.{{haproxy_micro_version}}"
 

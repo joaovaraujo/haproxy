@@ -1,2 +1,6 @@
 ---
-# tasks file for hproxy
+# tasks file for haproxy
+
+- include: install.yml
+  when: haproxy_action == 'install'
+  tags: [ 'haproxy', 'haproxy_install' ]

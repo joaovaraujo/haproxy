@@ -1,0 +1,50 @@
+---
+
+- name: download haproxy
+  local_action: >
+    get_url
+      url="{{haproxy_download_url}}"
+      dest="{{haproxy_download_dir}}/{{haproxy_package}}"
+  tags: download
+
+- name: unpacks haproxy
+  local_action: >
+    unarchive
+      src="{{haproxy_download_dir}}/{{haproxy_package}}"
+      dest="{{haproxy_download_dir}}/"
+  tags: unpack
+
+- name: ensures {{haproxy_installation_dir}}/{{haproxy_version}} exists
+  file:
+    path="{{haproxy_installation_dir}}/{{haproxy_version}}"
+    state=directory
+  tags: unpack
+
+- name: ensures haproxy is installed at {{haproxy_installation_dir}}/{{haproxy_version}}
+  synchronize:
+    src="{{haproxy_download_dir}}/haproxy-{{haproxy_version}}/{{item}}"
+    dest="{{haproxy_installation_dir}}/{{haproxy_version}}"
+    archive=yes
+    recursive=yes
+  tags: unpack
+  with_items:
+    - contrib
+    - doc
+    - ebtree
+    - examples
+    - include
+    - src
+    - tests
+    - CHANGELOG
+    - LICENSE
+    - Makefile
+    - README
+    - ROADMAP
+    - SUBVERS
+    - VERDATE
+    - VERSION
+
+- name: Compile haproxy 
+  action: shell chdir={{haproxy_installation_dir}}/{{haproxy_version}}/ make TARGET={{haproxy_make_target}} ARCH=native
+  tags:
+    - haproxy 
