@@ -47,4 +47,12 @@
 - name: Compile haproxy 
   action: shell chdir={{haproxy_installation_dir}}/{{haproxy_version}}/ make TARGET={{haproxy_make_target}} ARCH=native
   tags:
-    - haproxy 
+    - haproxy
+
+- name: ensures haproxy binary is acessible via $PATH
+  lineinfile:
+    dest=~/.bashrc
+    line="export PATH={{haprolxy_installation_dir}}/haproxy_version/:$PATH"
+    state=present
+    insertafter=EOF
+    create=true 
