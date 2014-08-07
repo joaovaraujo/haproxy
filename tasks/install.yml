@@ -3,20 +3,21 @@
 - name: download haproxy
   local_action: >
     get_url
-      url="{{haproxy_download_url}}"
-      dest="{{haproxy_download_dir}}/{{haproxy_package}}"
+      url={{ haproxy_download_url }}
+      dest={{ haproxy_download_dir }}/{{ haproxy_package }}
   tags: download
 
 - name: unpacks haproxy
   local_action: >
     unarchive
-      src="{{haproxy_download_dir}}/{{haproxy_package}}"
-      dest="{{haproxy_download_dir}}/"
+      copy=no
+      src={{ haproxy_download_dir }}/{{ haproxy_package }}
+      dest={{ haproxy_download_dir }}
   tags: unpack
 
 - name: ensures {{haproxy_installation_dir}}/{{haproxy_version}} exists
   file:
-    path="{{haproxy_installation_dir}}/{{haproxy_version}}"
+    path={{haproxy_installation_dir}}/{{haproxy_version}}
     state=directory
   tags: unpack
 
